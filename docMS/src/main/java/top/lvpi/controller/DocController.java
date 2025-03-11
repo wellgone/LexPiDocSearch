@@ -303,11 +303,11 @@ public class DocController {
             // 更新图书信息
             DocUpdateRequest updateRequest = new DocUpdateRequest();
             updateRequest.setId(id);
-            updateRequest.setFileName(result.getFilePath());
+            updateRequest.setFileName(result.getFileName());
             updateRequest.setPageSize(result.getPageCount());
             docService.updateDoc(updateRequest);
             
-            return BaseResponse.success(result.getFilePath());
+            return BaseResponse.success(result.getFileName());
         } catch (BusinessException e) {
             return BaseResponse.error(e.getCode(), e.getMessage());
         }
@@ -430,12 +430,12 @@ public class DocController {
         }
         try {
             // 获取图书id
-            DocFileDTO lpDocFileDTO = docFileService.getDocFilesNoDeleteByDocId(id);
-            if (lpDocFileDTO == null) {
+            DocFileDTO docFileDTO = docFileService.getDocFilesNoDeleteByDocId(id);
+            if (docFileDTO == null) {
                 throw new BusinessException(ErrorCode.NOT_FOUND_ERROR, "图书文件不存在");
             }
             //根据图书id获取file信息
-            LpFile lpFile = lpFileService.getById(lpDocFileDTO.getFileId());
+            LpFile lpFile = lpFileService.getById(docFileDTO.getFileId());
             if (lpFile == null) {
                 throw new BusinessException(ErrorCode.NOT_FOUND_ERROR, "文件不存在");
             }
@@ -502,12 +502,12 @@ public class DocController {
             try {
 
 
-                DocFileDTO lpDocFileDTO = docFileService.getDocFilesNoDeleteByDocId(id);   
-                if (lpDocFileDTO == null) {
+                DocFileDTO docFileDTO = docFileService.getDocFilesNoDeleteByDocId(id);   
+                if (docFileDTO == null) {
                     throw new BusinessException(ErrorCode.NOT_FOUND_ERROR, "图书文件不存在");
                 }
 
-                LpFile lpFile = lpFileService.getById(lpDocFileDTO.getFileId());
+                LpFile lpFile = lpFileService.getById(docFileDTO.getFileId());
                 if (lpFile == null) {
                     throw new BusinessException(ErrorCode.NOT_FOUND_ERROR, "文件不存在");
                 }
@@ -595,12 +595,12 @@ public class DocController {
         
         try {
             // 获取文件信息
-            DocFileDTO lpDocFileDTO = docFileService.getDocFilesNoDeleteByDocId(id);
-            if (lpDocFileDTO == null) {
+            DocFileDTO docFileDTO = docFileService.getDocFilesNoDeleteByDocId(id);
+            if (docFileDTO == null) {
                 return BaseResponse.error(ErrorCode.NOT_FOUND_ERROR, "图书文件不存在");
             }
 
-            LpFile lpFile = lpFileService.getById(lpDocFileDTO.getFileId());
+            LpFile lpFile = lpFileService.getById(docFileDTO.getFileId());
             if (lpFile == null) {
                 return BaseResponse.error(ErrorCode.NOT_FOUND_ERROR, "文件不存在");
             }
@@ -678,12 +678,12 @@ public class DocController {
                             .setCurrentStep(String.format("正在处理第%d/%d本图书的封面", current, total));
                         
                         //根据图书id获取file信息
-                        LpDocFileDTO lpDocFileDTO = lpDocFileService.getDocFilesNoDeleteByDocId(doc.getId());
-                        if (lpDocFileDTO == null) {
+                        DocFileDTO docFileDTO = docFileService.getDocFilesNoDeleteByDocId(doc.getId());
+                        if (docFileDTO == null) {
                             throw new BusinessException(ErrorCode.NOT_FOUND_ERROR, "图书文件不存在");
                         }
 
-                        LpFile lpFile = lpFileService.getById(lpDocFileDTO.getFileId());
+                        LpFile lpFile = lpFileService.getById(docFileDTO.getFileId());
                         if (lpFile == null) {
                             throw new BusinessException(ErrorCode.NOT_FOUND_ERROR, "文件不存在");
                         }
@@ -965,12 +965,12 @@ public class DocController {
                         .setCurrentStep(String.format("正在提取第%d/%d本图书", current, total));
 
                     //根据图书id获取file信息
-                    DocFileDTO lpDocFileDTO = docFileService.getDocFilesNoDeleteByDocId(doc.getId());
-                    if (lpDocFileDTO == null) {
+                    DocFileDTO docFileDTO = docFileService.getDocFilesNoDeleteByDocId(doc.getId());
+                    if (docFileDTO == null) {
                         throw new BusinessException(ErrorCode.NOT_FOUND_ERROR, "图书文件不存在");
                     }
 
-                    LpFile lpFile = lpFileService.getById(lpDocFileDTO.getFileId());
+                    LpFile lpFile = lpFileService.getById(docFileDTO.getFileId());
                     if (lpFile == null) {
                         throw new BusinessException(ErrorCode.NOT_FOUND_ERROR, "文件不存在");
                     }

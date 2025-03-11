@@ -104,7 +104,7 @@ public class DocServiceImpl extends ServiceImpl<DocMapper, Doc> implements DocSe
 
     @Override
     public int addDoc(DocAddRequest docAddRequest) {
-        LpDoc doc = new LpDoc();
+        Doc doc = new Doc();
         BeanUtils.copyProperties(docAddRequest, doc);
         try {
             int result = docMapper.insert(doc);
@@ -114,10 +114,10 @@ public class DocServiceImpl extends ServiceImpl<DocMapper, Doc> implements DocSe
             //判断是否存在文件id
             if (docAddRequest.getFileId() != null) {
                 //关联图书与文件
-                LpDocFile lpDocFile = new LpDocFile();
-                lpDocFile.setDocId(doc.getId());
-                lpDocFile.setFileId(docAddRequest.getFileId());
-                boolean save = lpDocFileService.save(lpDocFile);
+                DocFile docFile = new DocFile();
+                docFile.setDocId(doc.getId());
+                docFile.setFileId(docAddRequest.getFileId());
+                boolean save = docFileService.save(docFile);
                 if (!save) {
                     throw new BusinessException(ErrorCode.SYSTEM_ERROR, "关联图书与文件失败");
                 }

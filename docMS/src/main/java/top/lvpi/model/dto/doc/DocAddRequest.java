@@ -49,6 +49,9 @@ public class DocAddRequest {
     @Schema(description = "文件路径")
     private String filePath;
 
+    @Schema(description = "文件ID")
+    private Long fileId;
+
     @Schema(description = "封面图片URL")
     private String picUrl;
 
