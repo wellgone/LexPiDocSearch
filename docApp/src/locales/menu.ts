@@ -1,0 +1,16 @@
+export default {
+  'menu.welcome': '欢迎',
+  'menu.admin': '管理页',
+  'menu.admin.user-management': '用户管理',
+  'menu.doc': '图书管理',
+  'menu.doc.doc-list': '图书列表',
+  'menu.doc.doc-search': '图书搜索',
+  'menu.doc.doc-section': '章节管理',
+  'menu.doc.es-management': 'ES管理',
+  'menu.topic': '主题管理',
+  'menu.topic.topic-list': '主题列表',
+  'menu.topic.tag-list': '标签管理',
+  'menu.full-text-search': '全文搜索',
+  'menu.login': '登录',
+  'menu.profile': '个人中心',
+}; 

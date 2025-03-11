@@ -1,0 +1,164 @@
+server:
+  port: 9090
+  servlet:
+    context-path: /
+
+spring:
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://mysql:3306/LPMS?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+  data:
+    redis:
+      host: redis
+      port: 6379
+      password: YourStrongRedisPassword123
+      database: 1
+      timeout: 10000
+      client-type: lettuce
+      connect-timeout: 5000
+      lettuce:
+        pool:
+          max-active: 8
+          max-wait: -1
+          max-idle: 8
+          min-idle: 0
+          time-between-eviction-runs: 10s
+        shutdown-timeout: 100ms
+  servlet:
+    multipart:
+      # 单个文件大小限制
+      max-file-size: 1000MB
+      # 单次请求所有文件大小限制
+      max-request-size: 1000MB
+  elasticsearch:
+    uris: ${SPRING_ELASTICSEARCH_URIS:http://elasticsearch:9200}
+    username: ${SPRING_ELASTICSEARCH_USERNAME:}
+    password: ${SPRING_ELASTICSEARCH_PASSWORD:}
+    connection-timeout: 5s
+    socket-timeout: 60s
+  devtools:
+    restart:
+      exclude: static/**,public/**
+
+minio:
+  endpoint: minio:9000
+  rootUser: ${MINIO_ROOT_USER:minioadmin}
+  rootPassword: ${MINIO_ROOT_PASSWORD:minioadmin}
+  bucketName: lpms
+  expiry: 86400
+
+sa-token:
+  token-name: token
+  # token有效期 设为一天 (必定过期) 单位: 秒
+  timeout: 86400
+  # 多端不同 token 有效期 可查看 LoginHelper.loginByDevice 方法自定义
+  # token最低活跃时间 (指定时间无操作就过期) 单位: 秒
+  active-timeout: -1
+  # Same-Token的有效期 (单位: 秒)(默认一天）
+  #same-token-timeout: 600
+  # 是否允许同一账号并发登录 (为true时允许一起登录, 为false时新登录挤掉旧登录)
+  is-concurrent: true
+  # 在多人登录同一账号时，是否共用一个 token (为 true 时所有登录共用一个 token , 为 false 时每次登录新建一个 token)
+  # 使用 jwt-simple 模式后，is-share=false 恒等于 false。
+  is-share: false
+  # todo 鉴权模式说明：
+  # 1.is-read-cookie=true; is-read-header==>false; token-prefix=null;   ==> 标准的 Session + Cookie 模式（推荐）
+  # 2.is-read-cookie=false; is-read-header==>true; token-prefix=exist;
+  #   is-read-cookie=false; is-read-header==>true; token-prefix=null;   ==> 标准的 Redis + JWT 模式（推荐）
+  # 3.is-read-cookie=true; is-read-header==>true; token-prefix=null;    ==> Session + Cookie 模式和 Redis + JWT 模式共存，两者均能实现鉴权（推荐，模板默认模式）
+  # 4.is-read-cookie=true; is-read-header==>true; token-prefix=exist;   ==> 仅有 Redis + JWT 模式起作用，作用等同于标准的 Redis + JWT 模式
+  # 5.is-read-cookie=false; is-read-header==>false; token-prefix=null;
+  #   is-read-cookie=false; is-read-header==>false; token-prefix=exist; ==> 无法通过鉴权模式
+  # 鉴权模式一：Session + Cookie（Token 由 Cookie 自动传递），如果为 false ，那么前端 Cookie 不会自动填充 Token
+  is-read-cookie: true
+  # 鉴权模式二：Redis + JWT（Token 由 Header 手动传递），如果为 true ，正常的实现逻辑应该是将 Token 从登录接口返回给前端，前端存储之后每次发起请求都将 Token 放入 Header 中
+  is-read-header: true
+  # 在鉴权模式二下，Token 的前缀（这个需要手动添加并从 Header 中传入进来）
+  #token-prefix: "Bearer"
+  # jwt秘钥
+  jwt-secret-key: wellgone
+  # 开启日志
+  is-log: on
+  # 非jwt形式的token风格：uuid 带有中划线的uuid（默认）；simple-uuid 不带有中划线的uuid；random-32 随机32位字符串；random-64 随机64位字符串；random-128 随机128位字符串；tik tik风格。
+  token-style: uuid
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  show-actuator: false
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+
+# MyBatisPlus配置
+# https://baomidou.com/config/
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/*Mapper.xml
+  type-aliases-package: top.lvpi.model.entity
+  configuration:
+    # 自动驼峰命名规则（camel case）映射
+    map-underscore-to-camel-case: true
+    # MyBatis 自动映射策略
+    # NONE 不启用；PARTIAL 只对非嵌套；resultMap 自动映射；FULL 对所有；resultMap 自动映射；
+    auto-mapping-behavior: PARTIAL
+    # MyBatis 自动映射时未知列或未知属性处理策
+    # NONE 不做处理； WARNING 打印相关警告；FAILING 抛出异常和详细信息；
+    auto-mapping-unknown-column-behavior: NONE
+    # 更详细的日志输出 会有性能损耗 org.apache.ibatis.logging.stdout.StdOutImpl
+    # 关闭日志记录 (可单纯使用 p6spy 分析) org.apache.ibatis.logging.nologging.NoLoggingImpl
+    # 默认日志输出 org.apache.ibatis.logging.slf4j.Slf4jImpl
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    banner: false
+    db-config:
+      # 主键类型
+      # AUTO 自增；NONE 空；INPUT 用户输入；ASSIGN_ID 雪花算法；ASSIGN_UUID 排除中划线的UUID；UUID 普通的UUID；
+      id-type: ASSIGN_ID
+      # 逻辑删除的字段
+      logic-delete-field: deleted
+      # 逻辑已删除值
+      logic-delete-value: 1
+      # 逻辑未删除值
+      logic-not-delete-value: 0
+      insert-strategy: not_null
+      update-strategy: not_null
+      where-strategy: not_null
+
+# Knife4j的增强配置，不需要增强可以不配
+knife4j:
+  # 是否打开Knife4j的增强配置
+  enable: true
+  #  # todo 是否开启生产环境保护（由于拿到模板就需要二次开发，所以默认开发环境，即预先关闭）
+  #  production: false
+  setting:
+    language: zh-CN
+    enable-footer: true
+    enable-footer-custom: true
+    footer-custom-content: Apache License 2.0 | Copyright &copy; 2024 [AntonyCheng](https://github.com/AntonyCheng)
+    enable-home-custom: true
+
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+  level:
+    org.springframework.web: DEBUG  
+    org.hibernate: DEBUG
+    org.apache.ibatis: DEBUG
+    org.apache.ibatis.spring: DEBUG
+    org.mybatis: DEBUG
+    org.mybatis.spring.mapper: DEBUG
+    org.mybatis.spring.boot: DEBUG
+    org.mybatis.spring.boot.autoconfigure: DEBUG
+
+file:
+   upload-dir: /app/filedata

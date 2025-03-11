@@ -4,7 +4,7 @@ services:
   # Nginx反向代理
   nginx:
     image: nginx:1.25
-    container_name: book-nginx
+    container_name: doc-nginx
     env_file:
       - .env
     ports:
@@ -15,7 +15,7 @@ services:
       - ./docker/nginx/logs:/var/log/nginx
       - ./docker/nginx/ssl:/etc/nginx/ssl
     networks:
-      - book-network
+      - doc-network
     environment:
       - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY}
     command: >
@@ -29,7 +29,7 @@ services:
   # Elasticsearch搜索引擎
   elasticsearch:
     image: elasticsearch:8.12.2
-    container_name: book-elasticsearch
+    container_name: doc-elasticsearch
     env_file:
       - .env
     environment:
@@ -62,7 +62,7 @@ services:
     ports:
       - ${ELASTICSEARCH_PORT}:9200
     networks:
-      - book-network
+      - doc-network
     healthcheck:
       test: ["CMD-SHELL", "curl -s http://elasticsearch:9200/_cluster/health | grep -q 'status.*green\\|status.*yellow'"]
       interval: 30s
@@ -72,7 +72,7 @@ services:
   # MySQL数据库
   mysql:
     image: mysql:8.0
-    container_name: book-mysql
+    container_name: doc-mysql
     env_file:
       - .env
     environment:
@@ -89,7 +89,7 @@ services:
   # Redis缓存
   redis:
     image: redis:7.2
-    container_name: book-redis
+    container_name: doc-redis
     env_file:
       - .env
     command: redis-server --requirepass ${REDIS_PASSWORD} --appendonly yes
@@ -98,13 +98,13 @@ services:
     ports:
       - "${REDIS_PORT}:6379"
     networks:
-      - book-network
+      - doc-network
     restart: always
 
   # MinIO对象存储
   minio:
     image: minio/minio
-    container_name: book-minio
+    container_name: doc-minio
     env_file:
       - .env
     environment:
@@ -131,7 +131,7 @@ services:
   # MinIO初始化服务
   minio-init:
     image: minio/mc
-    container_name: book-minio-init
+    container_name: doc-minio-init
     env_file:
       - .env
     depends_on:
@@ -144,14 +144,14 @@ services:
       - ./docker/config/backend:/init
     entrypoint: ["/bin/sh", "/init/init_minio.sh"]
     networks:
-      - book-network
+      - doc-network
 
   # 后端服务
   backend:
     build: 
-      context: ./bookMS
+      context: ./docMS
       dockerfile: Dockerfile
-    container_name: book-backend
+    container_name: doc-backend
     env_file:
       - .env
     depends_on:
@@ -176,7 +176,7 @@ services:
     ports:
       - "${BACKEND_PORT}:9090"
     networks:
-      - book-network
+      - doc-network
     restart: always
     volumes:
       - ./docker/filedata:/app/filedata
@@ -185,9 +185,9 @@ services:
   # 前端服务
   frontend:
     build:
-      context: ./bookApp
+      context: ./docApp
       dockerfile: Dockerfile
-    container_name: book-frontend
+    container_name: doc-frontend
     env_file:
       - .env
     environment:
@@ -198,11 +198,11 @@ services:
     expose:
       - "80"
     networks:
-      - book-network
+      - doc-network
     restart: always
 
 networks:
-  book-network:
+  doc-network:
     driver: bridge
 
 # 数据卷配置

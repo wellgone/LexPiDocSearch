@@ -1,7 +1,7 @@
 node_modules
-/bookMS/src/main/resources/filedata/
-/bookApp/dist
-/bookMS/target
+/docMS/src/main/resources/filedata/
+/docApp/dist
+/docMS/target
 
 # IDE配置
 /.idea/
@@ -16,11 +16,11 @@ node_modules
 .husky/
 
 # 编译输出
-/bookMS/target/
-/bookMS/src/main/resources/application-dev.yml
-/bookApp/dist/
-/bookApp/.idea/
-/bookApp/src/.umi
+/docMS/target/
+/docMS/src/main/resources/application-dev.yml
+/docApp/dist/
+/docApp/.idea/
+/docApp/src/.umi
 target/
 dist/
 build/
@@ -44,9 +44,9 @@ yarn-error.log*
 .env.local
 .env.*.local
 !.env.example
-bookApp/.env
-bookApp/.env.local
-bookApp/.env.*.local
+docApp/.env
+docApp/.env.local
+docApp/.env.*.local
 
 # 数据目录
 /docker/elasticsearch/
@@ -56,7 +56,7 @@ bookApp/.env.*.local
 /docker/nginx/logs/
 /docker/nginx/ssl/
 /docker/filedata/
-/bookMS/src/main/resources/filedata/
+/docMS/src/main/resources/filedata/
 
 # 系统文件
 .DS_Store

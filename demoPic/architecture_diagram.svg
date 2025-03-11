@@ -61,7 +61,7 @@
   <g transform="translate(900, 150)">
     <!-- 后端框架 -->
     <rect x="0" y="0" width="500" height="600" rx="10" ry="10" fill="#f6ffed" stroke="#52c41a" stroke-width="2" />
-    <text x="250" y="40" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="#333">后端微服务 (bookMS)</text>
+    <text x="250" y="40" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="#333">后端微服务 (docMS)</text>
     
     <!-- 技术栈 -->
     <rect x="50" y="70" width="400" height="60" rx="5" ry="5" fill="#fff" stroke="#52c41a" stroke-width="1" />

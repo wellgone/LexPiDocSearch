@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.lvpi.mapper.DocSectionMapper">
+
+    <resultMap id="DocSectionVOMap" type="top.lvpi.model.vo.DocSectionVO">
+        <!-- DocSection 字段 -->
+        <id column="id" property="id"/>
+        <result column="doc_id" property="docId"/>
+        <result column="page_num" property="pageNum"/>
+        <result column="section_text" property="sectionText"/>
+        <result column="create_time" property="createTime"/>
+        <result column="modified_time" property="modifiedTime"/>
+        <result column="is_deleted" property="isDeleted"/>
+        
+        <!-- Doc 字段 -->
+        <result column="title" property="title"/>
+        <result column="sub_title" property="subTitle"/>
+        <result column="author" property="author"/>
+        <result column="publisher" property="publisher"/>
+        <result column="publication_year" property="publicationYear"/>
+        <result column="isbn" property="isbn"/>
+        <result column="category" property="category"/>
+        <result column="key_word" property="keyWord"/>
+        <result column="doc_summary" property="docSummary"/>
+        <result column="file_name" property="fileName"/>
+        <result column="pic_url" property="picUrl"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        bs.id, bs.doc_id, bs.page_num, bs.section_text, bs.create_time, bs.modified_time,
+        bs.is_deleted,
+        b.title, b.sub_title, b.author, b.publisher, b.publication_year, b.isbn, b.category, 
+        b.key_word, b.summary as doc_summary, b.file_name, b.pic_url
+    </sql>
+
+    <select id="selectSectionWithDocById" resultMap="DocSectionVOMap">
+        SELECT 
+        <include refid="Base_Column_List"/>
+        FROM lb_doc_section bs
+        LEFT JOIN lb_doc b ON bs.doc_id = b.id
+        WHERE bs.id = #{id}
+    </select>
+
+    <select id="selectSectionWithDocByIsbn" resultMap="DocSectionVOMap">
+        SELECT 
+        <include refid="Base_Column_List"/>
+        FROM lb_doc_section bs
+        LEFT JOIN lb_doc b ON bs.doc_id = b.id
+        WHERE b.isbn = #{isbn}
+    </select>
+
+    <select id="selectSectionWithDocByDocId" resultMap="DocSectionVOMap">
+        SELECT 
+        <include refid="Base_Column_List"/>
+        FROM lb_doc_section bs
+        LEFT JOIN lb_doc b ON bs.doc_id = b.id
+        WHERE bs.doc_id = #{docId}
+    </select>
+
+</mapper> 
