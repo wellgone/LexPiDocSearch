@@ -1,0 +1,256 @@
+.Wrapper {
+  list-style: none;
+  box-sizing: border-box;
+  padding-left: var(--spacing);
+  margin: 0;
+  outline: none;
+  border: none;
+}
+
+.TreeItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  background-color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+  width: 100%;
+  min-height: 36px;
+}
+
+.TreeItem:focus {
+  outline: none;
+  border-color: transparent;
+}
+
+.TreeItem:hover {
+  background-color: #f5f5f5;
+}
+
+.TreeItem:hover .actions {
+  opacity: 1;
+}
+
+.textContent {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  padding-right: 8px;
+  gap: 8px;
+}
+
+.text {
+  font-size: 1rem;
+  color: #3a3939d7;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: max-width 0.3s ease;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.noteContent {
+  font-size: 12px;
+  color: #666;
+  white-space: pre-wrap;
+  word-break: break-all;
+  line-height: 1.5;
+}
+
+.editForm {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 8px;
+  width: 100%;
+}
+
+.titleInput {
+  font-size: 14px;
+  font-weight: 500;
+  width: 100%;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.contentInput {
+  font-size: 12px;
+  resize: none;
+}
+
+.editActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  margin-left: auto;
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #999;
+  outline: none;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+}
+
+.actionButton:hover,
+.collapseButton:hover {
+  color: #1890ff;
+  background-color: rgba(24, 144, 255, 0.1);
+}
+
+.saveButton {
+  color: #52c41a;
+}
+
+.saveButton:hover {
+  color: #73d13d;
+  background-color: rgba(82, 196, 26, 0.1);
+}
+
+.cancelButton {
+  color: #ff4d4f;
+}
+
+.cancelButton:hover {
+  color: #ff7875;
+  background-color: rgba(255, 77, 79, 0.1);
+}
+
+.clone {
+  display: inline-block;
+  pointer-events: none;
+  padding: 4px 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ghost {
+  opacity: 0.5;
+}
+
+.indicator {
+  border-bottom: 1px solid #ccc;
+}
+
+.disableSelection {
+  pointer-events: none;
+}
+
+.disableInteraction {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.editing {
+  background-color: #f5f5f5;
+  padding: 8px 0;
+}
+
+.editing .TreeItem {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.editing .actions {
+  opacity: 1;
+}
+
+.count {
+  display: inline-block;
+  padding: 2px 6px;
+  margin-left: 8px;
+  font-size: 12px;
+  color: #666;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+}
+
+.expandButton {
+  opacity: 0;
+  margin-left: 8px;
+  transition: all 0.2s;
+}
+
+.TreeItem:hover .expandButton {
+  opacity: 1;
+}
+
+.expanded .text {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.pageSize {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  font-size: 12px;
+  line-height: 1;
+  color: #1890ff;
+  background: rgba(24, 144, 255, 0.1);
+  border-radius: 10px;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.itemNumber {
+  color: #666;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+  margin-left: 4px;
+}
+
+.collapseButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #999;
+  outline: none;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+}
+
+.dragging {
+  opacity: 0.5;
+}
+
+.sorting {
+  transition: transform 250ms ease;
+}

@@ -1,0 +1,49 @@
+.imageUploader {
+  width: auto;
+  height: auto;
+}
+
+
+.imageUploader .ant-upload {
+  width: 300px;
+  height: 300px;
+  margin: 0;
+  background-color: #fafafa;
+  border: 1px dashed #d9d9d9;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.imageUploader .ant-upload:hover {
+  border-color: #1890ff;
+  border-color: var(--ant-primary-color, #1890ff);
+}
+
+.imageUploader .ant-upload img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  border-radius: 4px;
+  object-fit: contain;
+}
+
+.imageUploader .upload-placeholder {
+  text-align: center;
+}
+
+.imageUploader .upload-placeholder .anticon {
+  font-size: 32px;
+  color: #999;
+  margin-bottom: 8px;
+}
+
+.imageUploader .upload-placeholder .upload-text {
+  color: #666;
+  margin-top: 8px;
+}

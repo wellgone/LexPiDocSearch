@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="1600" height="900" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- 设置背景 -->
+  <rect width="1600" height="900" fill="#f8f9fa" />
+  
+  <!-- 标题 -->
+  <text x="800" y="60" font-family="Arial, sans-serif" font-size="36" text-anchor="middle" fill="#333">LexiBookSearch项目架构图</text>
+  
+  <!-- 前端部分 -->
+  <g transform="translate(200, 150)">
+    <!-- 前端框架 -->
+    <rect x="0" y="0" width="500" height="600" rx="10" ry="10" fill="#e6f7ff" stroke="#1890ff" stroke-width="2" />
+    <text x="250" y="40" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="#333">前端应用 (bookApp)</text>
+    
+    <!-- 技术栈 -->
+    <rect x="50" y="70" width="400" height="60" rx="5" ry="5" fill="#fff" stroke="#1890ff" stroke-width="1" />
+    <text x="250" y="105" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" fill="#333">技术栈: React + UmiJS + Ant Design</text>
+    
+    <!-- 组件 -->
+    <g transform="translate(50, 150)">
+      <rect x="0" y="0" width="180" height="300" rx="5" ry="5" fill="#fff" stroke="#1890ff" stroke-width="1" />
+      <text x="90" y="30" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#333">组件 (components)</text>
+      
+      <rect x="20" y="50" width="140" height="40" rx="5" ry="5" fill="#f0f5ff" stroke="#1890ff" stroke-width="1" />
+      <text x="90" y="75" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">UI组件</text>
+      
+      <rect x="20" y="110" width="140" height="40" rx="5" ry="5" fill="#f0f5ff" stroke="#1890ff" stroke-width="1" />
+      <text x="90" y="135" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">页面组件</text>
+      
+      <rect x="20" y="170" width="140" height="40" rx="5" ry="5" fill="#f0f5ff" stroke="#1890ff" stroke-width="1" />
+      <text x="90" y="195" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">布局组件</text>
+      
+      <rect x="20" y="230" width="140" height="40" rx="5" ry="5" fill="#f0f5ff" stroke="#1890ff" stroke-width="1" />
+      <text x="90" y="255" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">表单组件</text>
+    </g>
+    
+    <!-- 业务逻辑 -->
+    <g transform="translate(270, 150)">
+      <rect x="0" y="0" width="180" height="300" rx="5" ry="5" fill="#fff" stroke="#1890ff" stroke-width="1" />
+      <text x="90" y="30" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#333">业务逻辑</text>
+      
+      <rect x="20" y="50" width="140" height="40" rx="5" ry="5" fill="#f0f5ff" stroke="#1890ff" stroke-width="1" />
+      <text x="90" y="75" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">页面 (pages)</text>
+      
+      <rect x="20" y="110" width="140" height="40" rx="5" ry="5" fill="#f0f5ff" stroke="#1890ff" stroke-width="1" />
+      <text x="90" y="135" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">服务 (services)</text>
+      
+      <rect x="20" y="170" width="140" height="40" rx="5" ry="5" fill="#f0f5ff" stroke="#1890ff" stroke-width="1" />
+      <text x="90" y="195" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">工具 (utils)</text>
+      
+      <rect x="20" y="230" width="140" height="40" rx="5" ry="5" fill="#f0f5ff" stroke="#1890ff" stroke-width="1" />
+      <text x="90" y="255" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">类型定义 (types)</text>
+    </g>
+    
+    <!-- 构建与配置 -->
+    <rect x="50" y="470" width="400" height="60" rx="5" ry="5" fill="#fff" stroke="#1890ff" stroke-width="1" />
+    <text x="250" y="505" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#333">构建与配置 (vite.config.ts, tsconfig.json)</text>
+  </g>
+  
+  <!-- 后端部分 -->
+  <g transform="translate(900, 150)">
+    <!-- 后端框架 -->
+    <rect x="0" y="0" width="500" height="600" rx="10" ry="10" fill="#f6ffed" stroke="#52c41a" stroke-width="2" />
+    <text x="250" y="40" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="#333">后端微服务 (bookMS)</text>
+    
+    <!-- 技术栈 -->
+    <rect x="50" y="70" width="400" height="60" rx="5" ry="5" fill="#fff" stroke="#52c41a" stroke-width="1" />
+    <text x="250" y="105" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" fill="#333">技术栈: Spring Boot 3 + MySQL + Elasticsearch</text>
+    
+    <!-- 后端分层 -->
+    <g transform="translate(50, 150)">
+      <rect x="0" y="0" width="400" height="400" rx="5" ry="5" fill="#fff" stroke="#52c41a" stroke-width="1" />
+      <text x="200" y="30" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#333">分层架构</text>
+      
+      <rect x="30" y="50" width="340" height="40" rx="5" ry="5" fill="#f6ffed" stroke="#52c41a" stroke-width="1" />
+      <text x="200" y="75" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">Controller层 (REST API接口)</text>
+      
+      <rect x="30" y="110" width="340" height="40" rx="5" ry="5" fill="#f6ffed" stroke="#52c41a" stroke-width="1" />
+      <text x="200" y="135" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">Service层 (业务逻辑)</text>
+      
+      <rect x="30" y="170" width="340" height="40" rx="5" ry="5" fill="#f6ffed" stroke="#52c41a" stroke-width="1" />
+      <text x="200" y="195" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">Repository层 (JPA数据访问)</text>
+      
+      <rect x="30" y="230" width="340" height="40" rx="5" ry="5" fill="#f6ffed" stroke="#52c41a" stroke-width="1" />
+      <text x="200" y="255" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">Mapper层 (MyBatis数据访问)</text>
+      
+      <rect x="30" y="290" width="340" height="40" rx="5" ry="5" fill="#f6ffed" stroke="#52c41a" stroke-width="1" />
+      <text x="200" y="315" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">Model层 (数据模型)</text>
+      
+      <rect x="30" y="350" width="340" height="40" rx="5" ry="5" fill="#f6ffed" stroke="#52c41a" stroke-width="1" />
+      <text x="200" y="375" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">Utils/Common (工具类与通用组件)</text>
+    </g>
+  </g>
+  
+  <!-- 中间基础设施部分 -->
+  <g transform="translate(400, 770)">
+    <rect x="0" y="0" width="800" height="100" rx="10" ry="10" fill="#fff1f0" stroke="#f5222d" stroke-width="2" />
+    <text x="400" y="40" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="#333">基础设施 (Docker)</text>
+    
+    <rect x="50" y="50" width="120" height="40" rx="5" ry="5" fill="#fff1f0" stroke="#f5222d" stroke-width="1" />
+    <text x="110" y="75" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">MySQL</text>
+    
+    <rect x="200" y="50" width="120" height="40" rx="5" ry="5" fill="#fff1f0" stroke="#f5222d" stroke-width="1" />
+    <text x="260" y="75" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">Redis</text>
+    
+    <rect x="350" y="50" width="120" height="40" rx="5" ry="5" fill="#fff1f0" stroke="#f5222d" stroke-width="1" />
+    <text x="410" y="75" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">Elasticsearch</text>
+    
+    <rect x="500" y="50" width="120" height="40" rx="5" ry="5" fill="#fff1f0" stroke="#f5222d" stroke-width="1" />
+    <text x="560" y="75" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">Nginx</text>
+    
+    <rect x="650" y="50" width="120" height="40" rx="5" ry="5" fill="#fff1f0" stroke="#f5222d" stroke-width="1" />
+    <text x="710" y="75" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">容器化部署</text>
+  </g>
+  
+  <!-- 连接线 -->
+  <!-- 前端到后端 -->
+  <line x1="700" y1="450" x2="900" y2="450" stroke="#333" stroke-width="2" stroke-dasharray="5,5" />
+  <polygon points="890,445 900,450 890,455" fill="#333" />
+  <text x="800" y="435" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333">HTTP API</text>
+  
+  <!-- 前端到基础设施 -->
+  <line x1="500" y1="750" x2="500" y2="770" stroke="#333" stroke-width="2" />
+  <polygon points="495,760 500,770 505,760" fill="#333" />
+  
+  <!-- 后端到基础设施 -->
+  <line x1="1100" y1="750" x2="1100" y2="770" stroke="#333" stroke-width="2" />
+  <polygon points="1095,760 1100,770 1105,760" fill="#333" />
+  
+  <!-- 图例 -->
+  <g transform="translate(1300, 810)">
+    <rect x="0" y="0" width="20" height="20" fill="#e6f7ff" stroke="#1890ff" stroke-width="1" />
+    <text x="30" y="15" font-family="Arial, sans-serif" font-size="14" fill="#333">前端</text>
+    
+    <rect x="0" y="30" width="20" height="20" fill="#f6ffed" stroke="#52c41a" stroke-width="1" />
+    <text x="30" y="45" font-family="Arial, sans-serif" font-size="14" fill="#333">后端</text>
+    
+    <rect x="0" y="60" width="20" height="20" fill="#fff1f0" stroke="#f5222d" stroke-width="1" />
+    <text x="30" y="75" font-family="Arial, sans-serif" font-size="14" fill="#333">基础设施</text>
+  </g>
+</svg> 

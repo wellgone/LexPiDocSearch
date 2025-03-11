@@ -1,0 +1,138 @@
+body {
+    margin: 0;
+    background-color: #525659;
+    font-family: Segoe UI, Tahoma, sans-serif;
+}
+
+.Example input,
+.Example button {
+    font: inherit;
+}
+
+.Example header {
+    background-color: #323639;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    color: white;
+}
+
+.Example header h1 {
+    font-size: inherit;
+    margin: 0;
+}
+
+.Example__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+.Example__container__load {
+    margin-top: 1em;
+    color: white;
+}
+
+.Example__container__document {
+    width: 100%;
+    /* max-width: calc(100% - 2em); */
+    /*margin: 1em 0;*/
+}
+
+.Example__container__document .react-pdf__Document {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Example__container__document .react-pdf__Page {
+    margin: 0 0 1em 0;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+.Example__container__document .react-pdf__message {
+    padding: 20px;
+    color: white;
+}
+mark2 {
+    outline: 2px dashed blue;
+    background-color: rgba(255, 255, 0, 0.05) !important;
+    /*font-size: calc(1em - 3px); !* 缩小字体一个像素 *!*/
+    color: rgba(0, 0, 0, 0); /* 设置字体颜色为透明 */
+    padding-right: 0 !important;
+    padding-top: 1px !important;
+    padding-bottom: 1px !important;
+}
+mark3 {
+    outline: 2px dashed blue;
+    background-color: rgba(0, 128, 255, 0.05) !important;
+    /*font-size: calc(1em - 3px); !* 缩小字体一个像素 *!*/
+    color: rgba(0, 0, 0, 0); /* 设置字体颜色为透明 */
+    padding-right: 0 !important;
+    padding-top: 1px !important;
+    padding-bottom: 1px !important;
+}
+mark4 {
+    outline: 2px dashed blue;
+    background-color: rgba(255, 0, 161, 0.05) !important;
+    /*font-size: calc(1em - 3px); !* 缩小字体一个像素 *!*/
+    color: rgba(0, 0, 0, 0); /* 设置字体颜色为透明 */
+    padding-right: 0 !important;
+    padding-top: 1px !important;
+    padding-bottom: 1px !important;
+}
+mark5 {
+    outline: 2px dashed blue;
+    background-color: rgba(255, 47, 0, 0.05) !important;
+    /*font-size: calc(1em - 3px); !* 缩小字体一个像素 *!*/
+    color: rgba(0, 0, 0, 0); /* 设置字体颜色为透明 */
+    padding-right: 0 !important;
+    padding-top: 1px !important;
+    padding-bottom: 1px !important;
+}
+mark6 {
+    outline: 2px dashed blue;
+    background-color: rgba(0, 255, 89, 0.05) !important;
+    /*font-size: calc(1em - 3px); !* 缩小字体一个像素 *!*/
+    color: rgba(0, 0, 0, 0); /* 设置字体颜色为透明 */
+    padding-right: 0 !important;
+    padding-top: 1px !important;
+    padding-bottom: 1px !important;
+}
+
+/* 添加到你的CSS文件中 */
+
+.Example__container__document {
+    position: relative; /* 为箭头定位 */
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    /*transform: translateY(-50%);*/
+    width: 30px;
+    height: 30px;
+    /*border-width: 10px; !* 增加边框宽度 *!*/
+    background-color: #0b58ff;
+    cursor: pointer; /* 鼠标悬停时显示手型光标 */
+}
+
+.arrow1 {
+    left: 15px; /* 调整左侧箭头的位置 */
+    /*border-top: 2px solid gray; !* 设置箭头颜色为灰色 *!*/
+    /*border-left: 2px solid gray; !* 设置箭头颜色为灰色 *!*/
+    /*transform: rotate(-45deg);*/
+}
+
+.arrow2 {
+    right: 15px; /* 调整右侧箭头的位置 */
+    /*border-top: 2px solid gray; !* 设置箭头颜色为灰色 *!*/
+    /*border-left: 2px solid gray; !* 设置箭头颜色为灰色 *!*/
+    /*transform: rotate(135deg);*/
+}
+
+/* 鼠标悬停时，增加箭头颜色以提供反馈 */
+.arrow:hover {
+    border-color: black;
+}

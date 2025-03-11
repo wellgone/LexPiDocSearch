@@ -1,0 +1,87 @@
+node_modules
+/bookMS/src/main/resources/filedata/
+/bookApp/dist
+/bookMS/target
+
+# IDE配置
+/.idea/
+/.vscode/
+*.iml
+*.iws
+*.ipr
+.cursor/
+.cursorrules
+
+# 项目特定文件
+.husky/
+
+# 编译输出
+/bookMS/target/
+/bookMS/src/main/resources/application-dev.yml
+/bookApp/dist/
+/bookApp/.idea/
+/bookApp/src/.umi
+target/
+dist/
+build/
+*.class
+*.jar
+*.war
+
+# 依赖目录
+node_modules/
+.pnpm-store/
+
+# 日志文件
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 环境配置文件
+/.env
+.env.local
+.env.*.local
+!.env.example
+bookApp/.env
+bookApp/.env.local
+bookApp/.env.*.local
+
+# 数据目录
+/docker/elasticsearch/
+/docker/minio/
+/docker/mysql/
+/docker/redis/
+/docker/nginx/logs/
+/docker/nginx/ssl/
+/docker/filedata/
+/bookMS/src/main/resources/filedata/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 临时文件
+*.swp
+*.swo
+*.tmp
+*.temp
+.temp/
+.cache/
+
+# 测试覆盖率报告
+coverage/
+
+# 其他
+*.bak
+*.pid
+*.seed
+*.pid.lock
+
+# 新增的 .yarn 目录
+.yarn/
+.idea/
+.vscode/
+
+

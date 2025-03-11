@@ -1,0 +1,138 @@
+// 定义必要的变量，替代主题导入
+@text-color: rgba(0, 0, 0, 0.85);
+@screen-sm: 576px;
+
+.statisticsContainer {
+  padding: 16px;
+}
+
+.progressCard {
+  height: 100%;
+}
+
+.progressContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+
+  @media screen and (max-width: 576px) {
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+
+.progressFormat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.progressPercent {
+  font-size: 36px;
+  font-weight: bold;
+  color: #52c41a;
+}
+
+.progressTitle {
+  font-size: 14px;
+  color: #666;
+}
+
+.progressDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 50%;
+
+  @media screen and (max-width: 576px) {
+    width: 100%;
+  }
+}
+
+.progressDetail {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.progressIcon {
+  font-size: 24px;
+}
+
+.progressInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.progressLabel {
+  font-size: 14px;
+  color: #666;
+}
+
+.progressValue {
+  font-size: 18px;
+  font-weight: 500;
+  color: @text-color;
+}
+
+.statCard {
+  height: 100%;
+  transition: all 0.3s;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.cardContent {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  padding: 12px;
+}
+
+.statContent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.statTitle {
+  font-size: 14px;
+  color: #666;
+}
+
+.valueWrapper {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.statValue {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.statSuffix {
+  font-size: 16px;
+  color: #666;
+}
+
+.secondaryText {
+  font-size: 13px;
+  color: #666;
+} 
