@@ -83,7 +83,7 @@ services:
     ports:
       - "${MYSQL_PORT}:3306"
     networks:
-      - book-network
+      - doc-network
     restart: always
 
   # Redis缓存
