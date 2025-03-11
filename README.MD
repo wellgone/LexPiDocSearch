@@ -189,8 +189,8 @@ CPU：
 
 #### 1. 克隆项目
 ```bash
-git clone https://github.com/wellgone/LexiBookSearch.git
-cd LexiBookSearch
+git clone https://github.com/wellgone/LexPiDocSearch.git
+cd LexPiDocSearch
 ```
 
 #### 2. 环境配置
