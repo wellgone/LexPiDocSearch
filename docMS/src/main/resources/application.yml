@@ -82,7 +82,7 @@ sa-token:
   # jwt秘钥
   jwt-secret-key: wellgone
   # 开启日志
-  is-log: on
+  is-log: true
   # 非jwt形式的token风格：uuid 带有中划线的uuid（默认）；simple-uuid 不带有中划线的uuid；random-32 随机32位字符串；random-64 随机64位字符串；random-128 随机128位字符串；tik tik风格。
   token-style: uuid
 
@@ -129,9 +129,9 @@ mybatis-plus:
       logic-delete-value: 1
       # 逻辑未删除值
       logic-not-delete-value: 0
-      insert-strategy: not_null
-      update-strategy: not_null
-      where-strategy: not_null
+      insert-strategy: NOT_NULL
+      update-strategy: NOT_NULL
+      where-strategy: NOT_NULL
 
 # Knife4j的增强配置，不需要增强可以不配
 knife4j:

@@ -35,7 +35,7 @@ services:
     environment:
       - discovery.type=single-node
       - ES_JAVA_OPTS=${ES_JAVA_OPTS}
-      - xpack.security.enabled=false
+      - xpack.security.enabled=true
       - ELASTIC_USERNAME=${ELASTIC_USERNAME}
       - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
       - http.cors.enabled=true
