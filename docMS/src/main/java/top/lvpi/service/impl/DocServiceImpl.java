@@ -40,8 +40,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFWorkdoc;
-import org.apache.poi.hssf.usermodel.HSSFWorkdoc;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -472,19 +472,19 @@ public class DocServiceImpl extends ServiceImpl<DocMapper, Doc> implements DocSe
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "文件内容不能为空");
         }
 
-        Workdoc workdoc = null;
+        Workbook workbook = null;
 
         try {
-            // 根据文件名后缀创建对应的Workdoc
+            // 根据文件名后缀创建对应的Workbook
             if (fileName.endsWith(".xlsx")) {
-                workdoc = new XSSFWorkdoc(new ByteArrayInputStream(fileContent));
+                workbook = new XSSFWorkbook(new ByteArrayInputStream(fileContent));
             } else if (fileName.endsWith(".xls")) {
-                workdoc = new HSSFWorkdoc(new ByteArrayInputStream(fileContent));
+                workbook = new HSSFWorkbook(new ByteArrayInputStream(fileContent));
             } else {
                 throw new BusinessException(ErrorCode.PARAMS_ERROR, "不支持的文件格式");
             }
 
-            Sheet sheet = workdoc.getSheetAt(0);
+            Sheet sheet = workbook.getSheetAt(0);
             List<Doc> docs = new ArrayList<>();
             int totalRows = 0;
             int successRows = 0;
@@ -610,7 +610,7 @@ public class DocServiceImpl extends ServiceImpl<DocMapper, Doc> implements DocSe
                                 log.info("resourcePath: " + basePath + filePath);
                                 FileUploadResult fileUploadResult = minioUtils.uploadFile(file); // 使用MinioUtils替代FileService
                                 log.info("fileUploadResult: " + fileUploadResult);
-                                doc.setFileName(fileUploadResult.getFilePath());
+                                doc.setFileName(fileUploadResult.getFileName());
                             }
                         } catch (Exception e) {
                             log.error("文件上传失败: ", e);
@@ -652,8 +652,8 @@ public class DocServiceImpl extends ServiceImpl<DocMapper, Doc> implements DocSe
         } finally {
             // 关闭资源
             try {
-                if (workdoc != null) {
-                    workdoc.close();
+                if (workbook != null) {
+                    workbook.close();
                 }
             } catch (IOException e) {
                 log.error("关闭资源失败", e);
