@@ -14,9 +14,12 @@ import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.elasticsearch.client.RestClient;
+import org.springframework.http.HttpHeaders;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 @Configuration
-@EnableElasticsearchRepositories(basePackages = "com.lvpi.repository.es")
+@EnableElasticsearchRepositories(basePackages = "top.lvpi.repository.es")
 public class ElasticsearchConfig extends ElasticsearchConfiguration {
     
     @Value("${spring.elasticsearch.uris}")
@@ -30,39 +33,57 @@ public class ElasticsearchConfig extends ElasticsearchConfiguration {
 
     @Override
     public ClientConfiguration clientConfiguration() {
+        // 显式使用HTTP方案 - 确保使用的是http而非https
         return ClientConfiguration.builder()
-            .connectedTo(elasticsearchUri.replace("http://", ""))
+            .connectedTo(getHostAndPort(elasticsearchUri))
+            .withBasicAuth(username, password)
             .withConnectTimeout(5000)
             .withSocketTimeout(60000)
             .build();
     }
-
+    
+    // 安全地解析主机和端口
+    private String getHostAndPort(String uri) {
+        try {
+            URI esUri = new URI(uri);
+            return esUri.getHost() + ":" + esUri.getPort();
+        } catch (URISyntaxException e) {
+            // 降级处理：移除http://并返回
+            return uri.replace("http://", "").replace("https://", "");
+        }
+    }
+    
+    // 如果上述配置无效，可以尝试完全手动配置客户端
     @Bean
     public ElasticsearchClient elasticsearchClient() {
-        // 从URI中解析主机信息
-        String[] parts = elasticsearchUri.replace("http://", "").split(":");
-        String host = parts[0];
-        int port = Integer.parseInt(parts[1]);
-
-        // 创建认证信息
-        BasicCredentialsProvider credentialsProvider = new BasicCredentialsProvider();
-        credentialsProvider.setCredentials(AuthScope.ANY,
-            new UsernamePasswordCredentials(username, password));
-
-        // 创建RestClient
-        RestClient restClient = RestClient.builder(new HttpHost(host, port, "http"))
-            .setHttpClientConfigCallback(httpClientBuilder -> 
-                httpClientBuilder
-                    .setDefaultCredentialsProvider(credentialsProvider)
-                    .setMaxConnTotal(100)
-                    .setMaxConnPerRoute(20))
-            .build();
-
-        // 创建传输层
-        RestClientTransport transport = new RestClientTransport(
-            restClient, new JacksonJsonpMapper());
-
-        // 创建API客户端
-        return new ElasticsearchClient(transport);
+        try {
+            // 使用URI类安全解析
+            URI esUri = new URI(elasticsearchUri);
+            String host = esUri.getHost();
+            int port = esUri.getPort();
+            
+            // 创建认证信息
+            BasicCredentialsProvider credentialsProvider = new BasicCredentialsProvider();
+            credentialsProvider.setCredentials(AuthScope.ANY,
+                new UsernamePasswordCredentials(username, password));
+    
+            // 创建RestClient - 明确指定http协议
+            RestClient restClient = RestClient.builder(new HttpHost(host, port, "http"))
+                .setHttpClientConfigCallback(httpClientBuilder -> 
+                    httpClientBuilder
+                        .setDefaultCredentialsProvider(credentialsProvider)
+                        .setMaxConnTotal(100)
+                        .setMaxConnPerRoute(20))
+                .build();
+    
+            // 创建传输层
+            RestClientTransport transport = new RestClientTransport(
+                restClient, new JacksonJsonpMapper());
+    
+            // 创建API客户端
+            return new ElasticsearchClient(transport);
+        } catch (URISyntaxException e) {
+            throw new RuntimeException("Invalid Elasticsearch URI: " + elasticsearchUri, e);
+        }
     }
 } 

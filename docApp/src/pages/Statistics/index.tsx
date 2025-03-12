@@ -35,6 +35,7 @@ interface StatisticsData {
   noteCount: number;
   documentCount: number;
   fileCount: number;
+  indexedPagesCount: number;
 }
 
 interface CategoryData {
@@ -58,6 +59,7 @@ const StatisticsPage: React.FC = () => {
     noteCount: 0,
     documentCount: 0,
     fileCount: 0,
+    indexedPagesCount: 0,
   });
   const [categoryData, setCategoryData] = useState<CategoryData[]>([]);
   const [seriesData, setSeriesData] = useState<SeriesData[]>([]);
@@ -248,7 +250,7 @@ const StatisticsPage: React.FC = () => {
                     format={(percent) => (
                       <div className={styles.progressFormat}>
                         <div className={styles.progressPercent}>{percent}%</div>
-                        <div className={styles.progressTitle}>书籍索引率</div>
+                        <div className={styles.progressTitle}>文档索引率</div>
                       </div>
                     )}
                   />
@@ -272,6 +274,9 @@ const StatisticsPage: React.FC = () => {
                         <div className={styles.progressLabel}>已索引文档</div>
                         <div className={styles.progressValue}>
                           {stats.indexedDocCount.toLocaleString()}
+                          <span style={{ fontSize: '12px', color: '#722ed1', marginLeft: '8px' }}>
+                            (共{stats.indexedPagesCount.toLocaleString()} 页)
+                          </span>
                         </div>
                       </div>
                     </div>

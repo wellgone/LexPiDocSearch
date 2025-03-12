@@ -5,6 +5,7 @@ import top.lvpi.mapper.DocMapper;
 import top.lvpi.mapper.NoteMapper;
 import top.lvpi.mapper.SearchReportMapper;
 import top.lvpi.model.entity.Doc;
+import top.lvpi.repository.es.DocSectionRepository;
 import top.lvpi.service.StatisticsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +37,9 @@ public class StatisticsServiceImpl implements StatisticsService {
     
     @Autowired
     private ApplicationContext applicationContext;
+    
+    @Autowired
+    private DocSectionRepository docSectionRepository;
 
     /**
      * 获取系统统计数据
@@ -89,6 +93,13 @@ public class StatisticsServiceImpl implements StatisticsService {
         } catch (Exception e) {
             logger.error("获取笔记数量失败", e);
             stats.put("noteCount", 0L);
+        }
+        
+        try {
+            stats.put("indexedPagesCount", self.getIndexedPagesCount());
+        } catch (Exception e) {
+            logger.error("获取已索引文档页数失败", e);
+            stats.put("indexedPagesCount", 0L);
         }
         
         return stats;
@@ -158,6 +169,16 @@ public class StatisticsServiceImpl implements StatisticsService {
     @Override
     public Long getNoteCount() {
         return noteMapper.selectCount(null);
+    }
+    
+    /**
+     * 获取ES中已索引的文档页数
+     * 
+     * @return ES中已索引的文档页数
+     */
+    @Override
+    public Long getIndexedPagesCount() {
+        return docSectionRepository.count();
     }
 
     /**

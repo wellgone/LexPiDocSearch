@@ -70,4 +70,11 @@ public interface StatisticsService {
      * @return 文件总数
      */
     Long getFileCount();    
+    
+    /**
+     * 获取ES中已索引的文档页数
+     * 
+     * @return ES中已索引的文档页数
+     */
+    Long getIndexedPagesCount();
 } 

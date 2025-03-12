@@ -68,6 +68,14 @@ public class StatisticsController {
         return ResultUtils.success(count);
     }
     
+    @GetMapping("/indexed/pages/count")
+    @Operation(summary = "获取已索引文档页数")
+    public BaseResponse<Long> getIndexedPagesCount() {
+        logger.info("获取已索引文档页数");
+        Long count = statisticsService.getIndexedPagesCount();
+        return ResultUtils.success(count);
+    }
+    
     @GetMapping("/report/count")
     @Operation(summary = "获取检索报告数量")
     public BaseResponse<Long> getReportCount() {
