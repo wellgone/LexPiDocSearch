@@ -35,7 +35,7 @@ services:
     environment:
       - discovery.type=single-node
       - ES_JAVA_OPTS=${ES_JAVA_OPTS}
-      - xpack.security.enabled=true
+      - xpack.security.enabled=false
       - ELASTIC_USERNAME=${ELASTIC_USERNAME}
       - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
       - http.cors.enabled=true
@@ -43,8 +43,6 @@ services:
       - http.cors.allow-headers=X-Requested-With,Content-Type,Content-Length,Authorization
       - http.cors.allow-credentials=true
       - bootstrap.memory_lock=true
-      - xpack.security.transport.ssl.enabled=true
-      - xpack.security.transport.ssl.verification_mode=certificate
     volumes:
       - ./docker/elasticsearch:/usr/share/elasticsearch/data
       - ./docker/config/elasticsearch/analysis-ik:/usr/share/elasticsearch/temp/analysis-ik
